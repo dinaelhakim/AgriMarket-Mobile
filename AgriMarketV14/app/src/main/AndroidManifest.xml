@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lenovo.testslidenerd">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- GPS Location Detection -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- G+ Login -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="USE_CREDENTIALS" />
+
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- check network state -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name="login_process.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/side_menue_heade"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name="luncher.landing_page.MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="login_process.LogIn"
+            android:label="Log In" />
+        <activity
+            android:name="login_process.Location"
+            android:label="Location" />
+        <activity
+            android:name="luncher.SideMenu.side_menu_activities.ContactUs"
+            android:label="@string/contactUsTitle" />
+        <activity
+            android:name="luncher.SideMenu.side_menu_activities.profile.Profile"
+            android:label="@string/profileTitle" />
+        <activity
+            android:name="crops.crops_types.Crops"
+            android:label="@string/cropsTypes" />
+        <activity
+            android:name="fertilizers.all_fertilizers.Fertilizers"
+            android:label="@string/fertilizersTypes" />
+        <activity
+            android:name="ta2awi.all_t2awi.Ta2awy"
+            android:label="@string/T2awi" />
+        <activity
+            android:name="chemicals.all_chemicals.Chemicals"
+            android:label="@string/chemicalsTypes" />
+        <activity
+            android:name="crops.crops_categories.vegetables.all_vegetables.Vegetables"
+            android:label="@string/VegetablesTitle" />
+        <activity
+            android:name="crops.crops_categories.fruits.all_fruits.Fruits"
+            android:label="@string/FruitsTitle" />
+        <activity
+            android:name="crops.crops_categories.seeds.all_seeds.Seeds"
+            android:label="@string/seedsTitle" />
+        <activity
+            android:name=".ProductDetails"
+            android:label="@string/productDetails" />
+        <activity
+            android:name="crops.crops_categories.vegetables.specific_vegetable.SpecificVegetable"
+            android:label="Tomato" />
+        <activity
+            android:name="crops.crops_categories.seeds.specific_seed.SpecificSeed"
+            android:label="Beans" />
+        <activity
+            android:name="crops.crops_categories.fruits.specific_fruit.SpecificFruit"
+            android:label="Mango" />
+        <activity
+            android:name=".AddProduct"
+            android:label="Add Product" />
+        <activity
+            android:name="fertilizers.specific_fertilizer.SpecificFertilizer"
+            android:label="Specific Fertilizer" />
+        <activity
+            android:name="chemicals.specific_chemicals.SpecificChemical"
+            android:label="Specific Chemical" />
+        <activity
+            android:name="ta2awi.specific_t2awi.SpecificT2awi"
+            android:label="Specific T2awi" />
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="luncher.SideMenu.side_menu_activities.profile.EditProfile"
+            android:label="Edit Profile" />
+        <activity
+            android:name="luncher.SideMenu.side_menu_activities.profile.user_offers.GetMyOffersActivity"
+            android:label="My Offers" />
+        <activity
+            android:name="luncher.SideMenu.side_menu_activities.profile.user_offers.UserOffersDetailsActivity"
+            android:label="Offer Details" />
+
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+        <!--fB-->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+
+
+
+
+
+    </application>
+
+</manifest>
