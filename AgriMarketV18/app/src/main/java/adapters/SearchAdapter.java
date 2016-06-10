@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.lenovo.testslidenerd.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
-import web_services_connections_handlers.UniversalImageLoaderConfiguration;
 
 
-public class OffersAdapter extends BaseAdapter {
+public class SearchAdapter extends BaseAdapter{
+
 
     ArrayList<String> imageUrlsList;
     ArrayList<String> titlesList;
@@ -21,13 +22,14 @@ public class OffersAdapter extends BaseAdapter {
     ArrayList<Boolean> isRecommended;
     Context context;
 
-    public OffersAdapter(Context context,ArrayList<String> imageUrlsList, ArrayList<String> titlesList, ArrayList<String> subTitlesList, ArrayList<Boolean> isRecommended) {
-        this.context=context;
+    public SearchAdapter(Context context,ArrayList<String> imageUrlsList, ArrayList<String> titlesList, ArrayList<String> subTitlesList, ArrayList<Boolean> isRecommended) {
         this.imageUrlsList = imageUrlsList;
         this.titlesList = titlesList;
         this.subTitlesList = subTitlesList;
         this.isRecommended = isRecommended;
+        this.context = context;
     }
+
 
     @Override
     public int getCount() {
@@ -46,7 +48,6 @@ public class OffersAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View row;
 
         if(convertView==null){
@@ -55,24 +56,12 @@ public class OffersAdapter extends BaseAdapter {
         }else {
             row=convertView;
         }
-        ImageView imageView1=(ImageView)row.findViewById(R.id.imageView1);
+
         TextView textView1=(TextView)row.findViewById(R.id.textView1);
-        TextView textView2=(TextView)row.findViewById(R.id.textView2);
-        ImageView image2=(ImageView)row.findViewById(R.id.voice);
 
-        UniversalImageLoaderConfiguration.setConfig(context);
-//        ImageLoader.getInstance().displayImage(imageUrlsList.get(position), imageView1);
-        imageView1.setImageResource(R.drawable.product);
-        textView1.setText((String) titlesList.get(position));
-        textView2.setText(subTitlesList.get(position));
+        textView1.setText(titlesList.get(position));
 
-
-        if(isRecommended.get(position).equals(false)){
-            image2.setVisibility(View.INVISIBLE);
-        }else if(isRecommended.get(position).equals(true)){
-            image2.setVisibility(View.VISIBLE);
-            image2.setImageResource(android.R.drawable.btn_star_big_on);
-        }
-        return row;
+        return null;
     }
+
 }

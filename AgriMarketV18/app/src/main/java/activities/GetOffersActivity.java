@@ -48,8 +48,8 @@ public class GetOffersActivity extends AppCompatActivity {
     int categoryId;
 
     ArrayList<String> imageUrlList=new ArrayList<>();
-    ArrayList<Object> titelsList=new ArrayList<>();
-    ArrayList<String> subTitelsList=new ArrayList<>();
+    ArrayList<String> titlesList =new ArrayList<>();
+    ArrayList<String> subTitlesList =new ArrayList<>();
     ArrayList<Boolean> isRecommendedList=new ArrayList<>();
     OffersAdapter offersAdapter;
 
@@ -96,7 +96,7 @@ public class GetOffersActivity extends AppCompatActivity {
         parameters= JsonStringGenerator.getGetLimitedOffersParam(categoryId, GetLimitedOffersParam.DATE_SORT, 1);
         connectToGetLimitedOffers(parameters,"startDate");
 
-        offersAdapter=new OffersAdapter(getBaseContext(),imageUrlList,titelsList,subTitelsList,isRecommendedList);
+        offersAdapter=new OffersAdapter(getBaseContext(),imageUrlList, titlesList, subTitlesList,isRecommendedList);
         listView.setAdapter(offersAdapter);
         listView.setOnItemClickListener(new GetOffersListenerClass(GetOffersActivity.this, offersList));
     }
@@ -131,14 +131,14 @@ public class GetOffersActivity extends AppCompatActivity {
                         offersList.add(offerObj);
 
                         if(title.equals("startDate")){
-                            titelsList.add(jsonObjectOffer.getString("startDate"));
+                            titlesList.add(jsonObjectOffer.getString("startDate"));
                         }else if(title.equals("price")){
-                            titelsList.add(((Integer) (jsonObjectOffer.getInt("price"))).toString()+ "  L.E");
+                            titlesList.add(((Integer) (jsonObjectOffer.getInt("price"))).toString() + "  L.E");
                         }else if(title.equals("quantity")){
-                            titelsList.add(((Integer)(jsonObjectOffer.getInt("quantity"))).toString());
+                            titlesList.add(((Integer) (jsonObjectOffer.getInt("quantity"))).toString());
                         }
 
-                        subTitelsList.add(jsonObjectOffer.getString("description"));
+                        subTitlesList.add(jsonObjectOffer.getString("description"));
                         imageUrlList.add(WebServicesUrl.Image_URL + jsonObjectOffer.getString("imageUrl"));
                         isRecommendedList.add(jsonObjectOffer.getBoolean("recommended"));
 
@@ -176,6 +176,7 @@ public class GetOffersActivity extends AppCompatActivity {
             dialog=null;
         }
     }
+
     private String getRequestBody(String parameters){
         JsonParams param = new JsonParams();
         param.setJsonObject(parameters);
@@ -208,8 +209,8 @@ public class GetOffersActivity extends AppCompatActivity {
 
                 offersList.clear();
                 imageUrlList.clear();
-                titelsList.clear();
-                subTitelsList.clear();
+                titlesList.clear();
+                subTitlesList.clear();
                 isRecommendedList.clear();
                 parameters= JsonStringGenerator.getGetLimitedOffersParam(categoryId, GetLimitedOffersParam.PRICE_SORT, 1);
                 connectToGetLimitedOffers(parameters,"price");
@@ -219,8 +220,8 @@ public class GetOffersActivity extends AppCompatActivity {
             case R.id.action_sort_by_quantity:
                 offersList.clear();
                 imageUrlList.clear();
-                titelsList.clear();
-                subTitelsList.clear();
+                titlesList.clear();
+                subTitlesList.clear();
                 isRecommendedList.clear();
                 parameters= JsonStringGenerator.getGetLimitedOffersParam(categoryId, GetLimitedOffersParam.QUANTITY_SORT, 1);
                 connectToGetLimitedOffers(parameters,"quantity");
@@ -230,8 +231,8 @@ public class GetOffersActivity extends AppCompatActivity {
             case R.id.action_sort_by_date:
                 offersList.clear();
                 imageUrlList.clear();
-                titelsList.clear();
-                subTitelsList.clear();
+                titlesList.clear();
+                subTitlesList.clear();
                 isRecommendedList.clear();
                 parameters= JsonStringGenerator.getGetLimitedOffersParam(categoryId, GetLimitedOffersParam.DATE_SORT, 1);
                 connectToGetLimitedOffers(parameters,"startDate");
