@@ -240,7 +240,7 @@ public class GetOffersActivity extends AppCompatActivity {
                 break;
             case R.id.search:
                 Intent intent = new Intent(GetOffersActivity.this,SearchActivity.class);
-
+                startActivity(intent);
                 showMsg("search");
                 break;
 

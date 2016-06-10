@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:hint="@string/search_hint"
+        android:label="@string/app_name"/>
