@@ -1,16 +1,21 @@
 package activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
-
 import listeners.NavigationDrawerListener;
 import adapters.GenericAdapter;
 import listeners.GenericListener;
@@ -35,10 +39,8 @@ import web_services_connections_handlers.WebServicesUrl;
 
 public class MainCategoriesActivity extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;//TODO
- //   private ListView listView;  //TODO
-//    private String[] setting;//TODO
-    private ActionBarDrawerToggle drawerListener;//TODO
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerListener;
     private ListView mainListView;
 
     //WebService GETMAINCATEGORIES------
@@ -54,6 +56,11 @@ public class MainCategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
 
         dialog=new ProgressDialog(this);
         dialog.setMessage("Loading...");
@@ -91,8 +98,6 @@ public class MainCategoriesActivity extends AppCompatActivity {
                                 categoryIdsList.add(i,categoryId);
                             }
                             genericAdapter.notifyDataSetChanged();
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -122,27 +127,13 @@ public class MainCategoriesActivity extends AppCompatActivity {
         mainListView.setAdapter(genericAdapter);
         mainListView.setOnItemClickListener(new GenericListener(this,categoryIdsList,0));
 
-
-//ListVew
-//        listView=(ListView)findViewById(R.id.drawerList);  //TODO
-//        setting=getResources().getStringArray(R.array.setting);//TODO
-//-------------------------------------------------------
-//To render List with elements : use method (1) or (2)
-//(1)Simple List with default Adapter
-//(2)Custom List image + text
-//        SideMenuAdapter myAdapter=new SideMenuAdapter(getBaseContext(),setting);     //TODO
-//        listView.setAdapter(myAdapter);  //TODO
-//---------------------------------------------------------
-//        listView.setOnItemClickListener(new SideMenuListener(this,listView,setting));  //TODO
-
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationDrawerListener(this));
 
-
-
 //DrawerLayout
         drawerLayout=(DrawerLayout)findViewById(R.id.drawlayout);
+
+
         drawerListener=new ActionBarDrawerToggle(this,drawerLayout,R.string.drawer_open,R.string.drawer_close){
 
             @Override
@@ -160,6 +151,7 @@ public class MainCategoriesActivity extends AppCompatActivity {
 
 //display back arow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
     }
 
@@ -172,12 +164,26 @@ public class MainCategoriesActivity extends AppCompatActivity {
         drawerListener.syncState();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.search_icon, menu);
+        return true;
+    }
+
+
 //To Open and close list using list icon
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(drawerListener.onOptionsItemSelected(item)){
 
             return  true;
+        }
+
+        if(item.getItemId()== R.id.search){
+            Toast.makeText(MainCategoriesActivity.this,"search",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainCategoriesActivity.this,SearchActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
